@@ -1,0 +1,708 @@
+[
+  {
+    "id": 1,
+    "name": "Paneer Tikka Roll",
+    "price": 140,
+    "category": "Snacks",
+    "image": "/uploads/item_1780904559133.png"
+  },
+  {
+    "id": 2,
+    "name": "Frenky Roll",
+    "price": 120,
+    "category": "Snacks",
+    "image": "/uploads/item_1780904637705.png"
+  },
+  {
+    "id": 3,
+    "name": "Veg. Cutlet",
+    "price": 80,
+    "category": "Snacks",
+    "image": "/uploads/item_1780904707123.png"
+  },
+  {
+    "id": 4,
+    "name": "Naram Dil Kabab",
+    "price": 180,
+    "category": "Snacks",
+    "image": "/uploads/item_1780904789410.png"
+  },
+  {
+    "id": 5,
+    "name": "Paneer Tikka",
+    "price": 230,
+    "category": "Snacks",
+    "image": "/uploads/item_1780904832449.png"
+  },
+  {
+    "id": 6,
+    "name": "Paneer Malai Tikka",
+    "price": 190,
+    "category": "Snacks",
+    "image": "/uploads/item_1780904875774.png"
+  },
+  {
+    "id": 7,
+    "name": "Paneer Achari Tikka",
+    "price": 210,
+    "category": "Snacks",
+    "image": "/uploads/item_1780904944554.png"
+  },
+  {
+    "id": 8,
+    "name": "Veg. Seekh Kabab",
+    "price": 180,
+    "category": "Snacks",
+    "image": "/uploads/item_1780905038655.png"
+  },
+  {
+    "id": 9,
+    "name": "Afgani Chaap",
+    "price": 180,
+    "category": "Snacks",
+    "image": "/uploads/item_1780905134123.png"
+  },
+  {
+    "id": 10,
+    "name": "Malai Chaap",
+    "price": 190,
+    "category": "Snacks",
+    "image": "/uploads/item_1780905179724.png"
+  },
+  {
+    "id": 11,
+    "name": "SD Spl. Chaap",
+    "price": 240,
+    "category": "Snacks"
+  },
+  {
+    "id": 12,
+    "name": "Paneer Chilly",
+    "price": 180,
+    "category": "Snacks",
+    "image": "/uploads/item_1780905272818.png"
+  },
+  {
+    "id": 13,
+    "name": "Mushroom Chilly",
+    "price": 190,
+    "category": "Snacks",
+    "image": "/uploads/item_1780905317990.png"
+  },
+  {
+    "id": 14,
+    "name": "Chana Chilly",
+    "price": 170,
+    "category": "Snacks",
+    "image": "/uploads/item_1780905351912.png"
+  },
+  {
+    "id": 15,
+    "name": "Corn Salt N Pepper",
+    "price": 180,
+    "category": "Snacks",
+    "image": "/uploads/item_1780905434452.png"
+  },
+  {
+    "id": 16,
+    "name": "French Fries",
+    "price": 110,
+    "category": "Snacks",
+    "image": "/uploads/item_1780905478366.png"
+  },
+  {
+    "id": 17,
+    "name": "Honey Chilly Potato",
+    "price": 120,
+    "category": "Snacks",
+    "image": "/uploads/item_1780905520190.png"
+  },
+  {
+    "id": 18,
+    "name": "Spring Roll",
+    "price": 100,
+    "category": "Snacks",
+    "image": "/uploads/item_1780905559883.png"
+  },
+  {
+    "id": 19,
+    "name": "Cheese Corn Roll",
+    "price": 140,
+    "category": "Snacks",
+    "image": "/uploads/item_1780905598659.png"
+  },
+  {
+    "id": 20,
+    "name": "Veg. Burger",
+    "price": 60,
+    "category": "Snacks",
+    "image": "/uploads/item_1780905630959.png"
+  },
+  {
+    "id": 21,
+    "name": "Cheese Burger",
+    "price": 80,
+    "category": "Snacks",
+    "image": "/uploads/item_1780905805876.png"
+  },
+  {
+    "id": 22,
+    "name": "Aloo Puri",
+    "price": 115,
+    "category": "Breakfast",
+    "image": "/uploads/item_1780905867539.png"
+  },
+  {
+    "id": 23,
+    "name": "Mix Pakoda",
+    "price": 170,
+    "category": "Breakfast",
+    "image": "/uploads/item_1780905940197.png"
+  },
+  {
+    "id": 24,
+    "name": "Bread Pakoda",
+    "price": 60,
+    "category": "Breakfast",
+    "image": "/uploads/item_1780905978362.png"
+  },
+  {
+    "id": 25,
+    "name": "Paneer Pakoda",
+    "price": 130,
+    "category": "Breakfast",
+    "image": "/uploads/item_1780906088094.png"
+  },
+  {
+    "id": 26,
+    "name": "Chole Bhature",
+    "price": 120,
+    "category": "Breakfast",
+    "image": "/uploads/item_1780906158898.png"
+  },
+  {
+    "id": 27,
+    "name": "Paav Bhaji",
+    "price": 80,
+    "category": "Breakfast",
+    "image": "/uploads/item_1780906228039.png"
+  },
+  {
+    "id": 28,
+    "name": "Aloo Prantha",
+    "price": 50,
+    "category": "Breakfast",
+    "image": "/uploads/item_1780906287788.png"
+  },
+  {
+    "id": 29,
+    "name": "Paneer Prantha",
+    "price": 70,
+    "category": "Breakfast",
+    "image": "/uploads/item_1780906440701.png"
+  },
+  {
+    "id": 30,
+    "name": "Aloo Pyaz Prantha",
+    "price": 50,
+    "category": "Breakfast",
+    "image": "/uploads/item_1780906478100.png"
+  },
+  {
+    "id": 31,
+    "name": "Mix Prantha",
+    "price": 80,
+    "category": "Breakfast",
+    "image": "/uploads/item_1780906528941.png"
+  },
+  {
+    "id": 32,
+    "name": "Sandwich Grill",
+    "price": 90,
+    "category": "Breakfast",
+    "image": "/uploads/item_1780906576566.png"
+  },
+  {
+    "id": 33,
+    "name": "Cheese Sandwich",
+    "price": 110,
+    "category": "Breakfast",
+    "image": "/uploads/item_1780906622684.png"
+  },
+  {
+    "id": 34,
+    "name": "Dum Aloo Punjabi",
+    "price": 160,
+    "category": "Indian",
+    "image": "/uploads/item_1780906716855.png"
+  },
+  {
+    "id": 35,
+    "name": "Dum Aloo Banarsi",
+    "price": 180,
+    "category": "Indian",
+    "image": "/uploads/item_1780906879448.png"
+  },
+  {
+    "id": 36,
+    "name": "Dum Aloo Kashmiri",
+    "price": 190,
+    "category": "Indian",
+    "image": "/uploads/item_1780906921820.png"
+  },
+  {
+    "id": 37,
+    "name": "Aloo Matar",
+    "price": 150,
+    "category": "Indian",
+    "image": "/uploads/item_1780906968100.png"
+  },
+  {
+    "id": 38,
+    "name": "Methi Malai Paneer",
+    "price": 200,
+    "category": "Indian",
+    "image": "/uploads/item_1780907107725.png"
+  },
+  {
+    "id": 39,
+    "name": "Methi Malai Matar",
+    "price": 180,
+    "category": "Indian",
+    "image": "/uploads/item_1780907062815.png"
+  },
+  {
+    "id": 40,
+    "name": "Aloo Methi",
+    "price": 160,
+    "category": "Indian",
+    "image": "/uploads/item_1780907154770.png"
+  },
+  {
+    "id": 41,
+    "name": "Matar Paneer",
+    "price": 170,
+    "category": "Indian",
+    "image": "/uploads/item_1780907204749.png"
+  },
+  {
+    "id": 42,
+    "name": "Kadhai Paneer",
+    "price": 200,
+    "category": "Indian",
+    "image": "/uploads/item_1780907261031.png"
+  },
+  {
+    "id": 43,
+    "name": "Shahi Paneer",
+    "price": 180,
+    "category": "Indian",
+    "image": "/uploads/item_1780907305619.png"
+  },
+  {
+    "id": 44,
+    "name": "Paneer Bhurji",
+    "price": 220,
+    "category": "Indian",
+    "image": "/uploads/item_1780907350414.png"
+  },
+  {
+    "id": 45,
+    "name": "Paneer Do Pyaza",
+    "price": 180,
+    "category": "Indian",
+    "image": "/uploads/item_1780907401195.png"
+  },
+  {
+    "id": 46,
+    "name": "Paneer Tadka Masala",
+    "price": 190,
+    "category": "Indian",
+    "image": "/uploads/item_1780907490046.png"
+  },
+  {
+    "id": 47,
+    "name": "Paneer Khurchan",
+    "price": 210,
+    "category": "Indian",
+    "image": "/uploads/item_1780907528060.png"
+  },
+  {
+    "id": 48,
+    "name": "Paneer Tikka Masala",
+    "price": 220,
+    "category": "Indian",
+    "image": "/uploads/item_1780907564044.png"
+  },
+  {
+    "id": 49,
+    "name": "Palak Paneer",
+    "price": 200,
+    "category": "Indian",
+    "image": "/uploads/item_1780907629097.png"
+  },
+  {
+    "id": 50,
+    "name": "Mix Veg.",
+    "price": 160,
+    "category": "Indian",
+    "image": "/uploads/item_1780907672605.png"
+  },
+  {
+    "id": 51,
+    "name": "Veg. Kadhai",
+    "price": 170,
+    "category": "Indian",
+    "image": "/uploads/item_1780907729398.png"
+  },
+  {
+    "id": 52,
+    "name": "Veg. Kohla Puri",
+    "price": 170,
+    "category": "Indian",
+    "image": "/uploads/item_1780907777026.png"
+  },
+  {
+    "id": 53,
+    "name": "Veg. Maratha",
+    "price": 160,
+    "category": "Indian",
+    "image": "/uploads/item_1780907845470.png"
+  },
+  {
+    "id": 54,
+    "name": "Veg. Diwani Handi",
+    "price": 180,
+    "category": "Indian",
+    "image": "/uploads/item_1780907913035.png"
+  },
+  {
+    "id": 55,
+    "name": "Veg. Hyderabadi",
+    "price": 170,
+    "category": "Indian",
+    "image": "/uploads/item_1780907971737.png"
+  },
+  {
+    "id": 56,
+    "name": "Veg. Sada Bahar",
+    "price": 180,
+    "category": "Indian",
+    "image": "/uploads/item_1780908031839.png"
+  },
+  {
+    "id": 57,
+    "name": "Veg. Sabnami",
+    "price": 180,
+    "category": "Indian",
+    "image": "/uploads/item_1780908076155.png"
+  },
+  {
+    "id": 58,
+    "name": "Veg. Tawa",
+    "price": 190,
+    "category": "Indian",
+    "image": "/uploads/item_1780908131012.png"
+  },
+  {
+    "id": 59,
+    "name": "Veg. Kofta",
+    "price": 160,
+    "category": "Indian",
+    "image": "/uploads/item_1780908180405.png"
+  },
+  {
+    "id": 60,
+    "name": "Dhingri Kofta",
+    "price": 180,
+    "category": "Indian",
+    "image": "/uploads/item_1780908234730.png"
+  },
+  {
+    "id": 61,
+    "name": "Dal Tadka",
+    "price": 140,
+    "category": "Indian",
+    "image": "/uploads/item_1780908284970.png"
+  },
+  {
+    "id": 62,
+    "name": "Dal Makhni",
+    "price": 160,
+    "category": "Indian",
+    "image": "/uploads/item_1780908317417.png"
+  },
+  {
+    "id": 63,
+    "name": "Veg. Fried Rice",
+    "price": 160,
+    "category": "Rice",
+    "image": "/uploads/item_1780908350368.png"
+  },
+  {
+    "id": 64,
+    "name": "Steam Rice",
+    "price": 70,
+    "category": "Rice",
+    "image": "/uploads/item_1780908388153.png"
+  },
+  {
+    "id": 65,
+    "name": "Zeera Rice",
+    "price": 90,
+    "category": "Rice",
+    "image": "/uploads/item_1780908429262.png"
+  },
+  {
+    "id": 66,
+    "name": "Thai Chilly Fried Rice",
+    "price": 200,
+    "category": "Rice",
+    "image": "/uploads/item_1780908482337.png"
+  },
+  {
+    "id": 67,
+    "name": "Veg. Pulao",
+    "price": 150,
+    "category": "Rice",
+    "image": "/uploads/item_1780908513477.png"
+  },
+  {
+    "id": 68,
+    "name": "Tripple Fried Rice",
+    "price": 200,
+    "category": "Rice",
+    "image": "/uploads/item_1780908576768.png"
+  },
+  {
+    "id": 69,
+    "name": "Veg. Biryani",
+    "price": 160,
+    "category": "Rice",
+    "image": "/uploads/item_1780908620495.png"
+  },
+  {
+    "id": 70,
+    "name": "Veg. Hyderabadi Rice",
+    "price": 170,
+    "category": "Rice",
+    "image": "/uploads/item_1780908675006.png"
+  },
+  {
+    "id": 71,
+    "name": "Kashmiri Pulao",
+    "price": 180,
+    "category": "Rice",
+    "image": "/uploads/item_1780908730646.png"
+  },
+  {
+    "id": 72,
+    "name": "Plain Roti",
+    "price": 10,
+    "category": "Tandoor",
+    "image": "/uploads/item_1780908768293.png"
+  },
+  {
+    "id": 73,
+    "name": "Butter Roti",
+    "price": 15,
+    "category": "Tandoor",
+    "image": "/uploads/item_1780908816189.png"
+  },
+  {
+    "id": 74,
+    "name": "Plain Naan",
+    "price": 35,
+    "category": "Tandoor",
+    "image": "/uploads/item_1780908846047.png"
+  },
+  {
+    "id": 75,
+    "name": "Butter Naan",
+    "price": 35,
+    "category": "Tandoor",
+    "image": "/uploads/item_1780908882911.png"
+  },
+  {
+    "id": 76,
+    "name": "Stuff Naan",
+    "price": 40,
+    "category": "Tandoor",
+    "image": "/uploads/item_1780908922855.png"
+  },
+  {
+    "id": 77,
+    "name": "Laccha Prantha",
+    "price": 25,
+    "category": "Tandoor",
+    "image": "/uploads/item_1780908975309.png"
+  },
+  {
+    "id": 78,
+    "name": "Chilly Prantha Red",
+    "price": 30,
+    "category": "Tandoor",
+    "image": "/uploads/item_1780909045415.png"
+  },
+  {
+    "id": 79,
+    "name": "Chilly Prantha Green",
+    "price": 30,
+    "category": "Tandoor",
+    "image": "/uploads/item_1780909095986.png"
+  },
+  {
+    "id": 80,
+    "name": "Mix Raita",
+    "price": 80,
+    "category": "Raita",
+    "image": "/uploads/item_1780909141298.png"
+  },
+  {
+    "id": 81,
+    "name": "Boondi Raita",
+    "price": 60,
+    "category": "Raita",
+    "image": "/uploads/item_1780909188371.png"
+  },
+  {
+    "id": 82,
+    "name": "Fruit Raita",
+    "price": 100,
+    "category": "Raita",
+    "image": "/uploads/item_1780909225093.png"
+  },
+  {
+    "id": 83,
+    "name": "Plain Curd",
+    "price": 50,
+    "category": "Raita",
+    "image": "/uploads/item_1780909266468.png"
+  },
+  {
+    "id": 84,
+    "name": "Veg. Manchow Soup",
+    "price": 70,
+    "category": "Soup",
+    "image": "/uploads/item_1780909324016.png"
+  },
+  {
+    "id": 85,
+    "name": "Veg. Clear Soup",
+    "price": 60,
+    "category": "Soup",
+    "image": "/uploads/item_1780909369325.png"
+  },
+  {
+    "id": 86,
+    "name": "Lemon Coriander Soup",
+    "price": 90,
+    "category": "Soup",
+    "image": "/uploads/item_1780909412053.png"
+  },
+  {
+    "id": 87,
+    "name": "Hot N Sour Soup",
+    "price": 80,
+    "category": "Soup",
+    "image": "/uploads/item_1780909473748.png"
+  },
+  {
+    "id": 88,
+    "name": "Veg. Hakka Noodles",
+    "price": 110,
+    "category": "Noodles",
+    "image": "/uploads/item_1780909509885.png"
+  },
+  {
+    "id": 89,
+    "name": "Schezwan Noodles",
+    "price": 140,
+    "category": "Noodles",
+    "image": "/uploads/item_1780909540920.png"
+  },
+  {
+    "id": 90,
+    "name": "Veg. Noodles",
+    "price": 90,
+    "category": "Noodles",
+    "image": "/uploads/item_1780909576678.png"
+  },
+  {
+    "id": 91,
+    "name": "Veg. Singapori Noodles",
+    "price": 140,
+    "category": "Noodles",
+    "image": "/uploads/item_1780909611738.png"
+  },
+  {
+    "id": 92,
+    "name": "Chilly Garlic Noodles",
+    "price": 130,
+    "category": "Noodles",
+    "image": "/uploads/item_1780909734985.png"
+  },
+  {
+    "id": 93,
+    "name": "Hot Coffee",
+    "price": 35,
+    "category": "Beverages",
+    "image": "/uploads/item_1780909792753.png"
+  },
+  {
+    "id": 94,
+    "name": "Cold Coffee",
+    "price": 50,
+    "category": "Beverages",
+    "image": "/uploads/item_1780909825773.png"
+  },
+  {
+    "id": 95,
+    "name": "Tea",
+    "price": 20,
+    "category": "Beverages",
+    "image": "/uploads/item_1780909873570.png"
+  },
+  {
+    "id": 96,
+    "name": "Lassi",
+    "price": 40,
+    "category": "Beverages",
+    "image": "/uploads/item_1780909919075.png"
+  },
+  {
+    "id": 97,
+    "name": "Salt N Sweet Lassi",
+    "price": 50,
+    "category": "Beverages",
+    "image": "/uploads/item_1780909974340.png"
+  },
+  {
+    "id": 98,
+    "name": "Fresh Lime Soda",
+    "price": 50,
+    "category": "Beverages",
+    "image": "/uploads/item_1780910014875.png"
+  },
+  {
+    "id": 99,
+    "name": "Gajar Halwa",
+    "price": 35,
+    "category": "Sweets",
+    "image": "/uploads/item_1780910057567.png"
+  },
+  {
+    "id": 100,
+    "name": "Rasmalai",
+    "price": 50,
+    "category": "Sweets",
+    "image": "/uploads/item_1780910099744.png"
+  },
+  {
+    "id": 101,
+    "name": "Gulab Jamun",
+    "price": 20,
+    "category": "Sweets",
+    "image": "/uploads/item_1780910152039.png"
+  }
+]
