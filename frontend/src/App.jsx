@@ -15,6 +15,7 @@ import RatingModal       from './components/RatingModal';
 import { ThemeProvider, ThemeToggle, useTheme } from './components/ThemeContext';
 
 const STATUS_FLOW  = ['Pending', 'Preparing', 'Ready', 'Delivered'];
+const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:1500';
 const STATUS_STYLE = {
   Pending:   { bg: '#78350f', text: '#fde68a', label: '🕐 Pending' },
   Preparing: { bg: '#1e3a5f', text: '#93c5fd', label: '👨‍🍳 Preparing' },
@@ -130,7 +131,7 @@ function App() {
     const savedLang  = localStorage.getItem('dhaba_lang');
     if (savedLang) setLang(savedLang);
     if (savedToken && savedUser) {
-      fetch(`${import.meta.env.VITE_API_URL}/api/auth/me`, { headers: { 'Authorization': `Bearer ${savedToken}` } })
+      fetch(`${API_BASE}/api/auth/me`, { headers: { 'Authorization': `Bearer ${savedToken}` } })
         .then(r => r.json())
         .then(data => { if (data.user) { setToken(savedToken); setUser(JSON.parse(savedUser)); } else { localStorage.removeItem('dhaba_token'); localStorage.removeItem('dhaba_user'); } })
         .catch(() => {})
@@ -166,10 +167,10 @@ function App() {
 
   /* ── Fetch ── */
   const fetchOrders = async () => {
-    try { const r = await fetch(`${import.meta.env.VITE_API_URL}/api/orders`, { headers: { 'Authorization': `Bearer ${token}` } }); if (r.ok) setOrders(await r.json()); } catch {}
+    try { const r = await fetch(`${API_BASE}/api/orders`, { headers: { 'Authorization': `Bearer ${token}` } }); if (r.ok) setOrders(await r.json()); } catch {}
   };
   const fetchMenu = async () => {
-    try { const r = await fetch(`${import.meta.env.VITE_API_URL}/api/menu`); setMenuItems(await r.json()); } catch {}
+    try { const r = await fetch(`${API_BASE}/api/menu`); setMenuItems(await r.json()); } catch {}
   };
 
   useEffect(() => {
@@ -195,7 +196,7 @@ function App() {
   const handleStatusChange = async (orderId, newStatus) => {
     setUpdatingId(orderId);
     try {
-      await fetch(`${import.meta.env.VITE_API_URL}/api/order/${orderId}/status`, { method: 'PATCH', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }, body: JSON.stringify({ status: newStatus }) });
+      await fetch(`${API_BASE}/api/order/${orderId}/status`, { method: 'PATCH', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }, body: JSON.stringify({ status: newStatus }) });
       setOrders(prev => prev.map(o => o.id === orderId ? { ...o, status: newStatus } : o));
     } catch { alert(t.statusFailed); }
     setUpdatingId(null);
@@ -211,7 +212,7 @@ function App() {
   const handleCancelOrder = async (orderId) => {
     if (!window.confirm(t.cancelConfirm)) return;
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/order/${orderId}`, { method: 'DELETE', headers: { 'Authorization': `Bearer ${token}` } });
+      const res = await fetch(`${API_BASE}/api/order/${orderId}`, { method: 'DELETE', headers: { 'Authorization': `Bearer ${token}` } });
       if (res.ok) setOrders(prev => prev.filter(o => o.id !== orderId));
       else alert(t.cancelFailed);
     } catch { alert(t.cancelFailed); }
@@ -248,7 +249,7 @@ function App() {
   const handleCustomerCancel = async (orderId) => {
     if (!window.confirm(t.cancelConfirm)) return;
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/order/${orderId}`, { method: 'DELETE' });
+      const res = await fetch(`${API_BASE}/api/order/${orderId}`, { method: 'DELETE' });
       if (res.ok) {
         setMyOrders(prev => prev.map(o => o.id === orderId ? { ...o, status: 'Cancelled' } : o));
       } else { alert(t.cancelFailed); }
@@ -265,7 +266,7 @@ function App() {
       const fd = new FormData();
       fd.append('name', newItem.name.trim()); fd.append('price', newItem.price); fd.append('category', newItem.category.trim());
       if (imageFile) fd.append('image', imageFile);
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/menu`, { method: 'POST', body: fd });
+      const res = await fetch(`${API_BASE}/api/menu`, { method: 'POST', body: fd });
       const data = await res.json();
       setMenuItems(prev => [...prev, data]);
       setNewItem({ name: '', price: '', category: '' }); setImageFile(null); setImagePreview(null); setAddError('');
@@ -276,7 +277,7 @@ function App() {
     if (!file) return; setUploadingId(itemId);
     try {
       const fd = new FormData(); fd.append('image', file);
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/menu/${itemId}/image`, { method: 'PATCH', body: fd });
+      const res = await fetch(`${API_BASE}/api/menu/${itemId}/image`, { method: 'PATCH', body: fd });
       const data = await res.json();
       setMenuItems(prev => prev.map(i => i.id === itemId ? data : i));
     } catch { alert(t.uploadFailed); }
@@ -284,7 +285,7 @@ function App() {
   };
 
   const handleDeleteItem = async (id) => {
-    try { await fetch(`${import.meta.env.VITE_API_URL}/api/menu/${id}`, { method: 'DELETE' }); setMenuItems(prev => prev.filter(i => i.id !== id)); }
+    try { await fetch(`${API_BASE}/api/menu/${id}`, { method: 'DELETE' }); setMenuItems(prev => prev.filter(i => i.id !== id)); }
     catch { alert(t.deleteFailed); }
   };
 
@@ -425,7 +426,7 @@ function App() {
                               ))}
                             </div>
                             {!isCancelled && order.status !== 'Delivered' && order.status !== 'Preparing' && order.status !== 'Ready' && (
-                              <button onClick={() => handleCustomerCancel(order.id)}
+                              <button onClick={() => handleCustomerCancel(order._id || order.id)}
                                 style={{ background: '#7f1d1d', border: '1px solid #991b1b', color: '#fca5a5', fontSize: 12, fontWeight: 700, padding: '6px 16px', borderRadius: 8, cursor: 'pointer', width: '100%' }}>
                                 ❌ {t.cancelOrder}
                               </button>
@@ -604,9 +605,9 @@ function App() {
                       {sortedOrders.map(order => {
                         const st = STATUS_STYLE[order.status] || STATUS_STYLE['Pending'];
                         const nextStatus = getNextStatus(order.status);
-                        const isUpdating = updatingId === order.id;
+                        const isUpdating = updatingId === (order._id || order.id);
                         return (
-                          <div key={order.id}
+                          <div key={order._id || order.id}
                             style={{
                               borderLeft: `4px solid ${order.urgent ? '#ef4444' : st.text}`,
                               // ── NEW: red glow on urgent cards ──
@@ -619,10 +620,10 @@ function App() {
                                 <span style={{ background: st.bg, color: st.text }} className="text-xs font-bold px-3 py-1 rounded-full">{st.label}</span>
                                 <span className="text-gray-500 text-sm">{order.time}</span>
                                 {/* ── OrderTimer ── */}
-                                <OrderTimer orderId={order.id} status={order.status} />
+                                <OrderTimer orderId={order._id || order.id} status={order.status} />
                                 {/* ── UrgentBadge ── */}
                                 <UrgentBadge
-                                  orderId={order.id}
+                                  orderId={order._id || order.id}
                                   urgent={!!order.urgent}
                                   token={token}
                                   onToggle={handleUrgentToggle}
@@ -666,12 +667,12 @@ function App() {
                                       <button key={m}
                                         onClick={async () => {
                                           try {
-                                            await fetch(`${import.meta.env.VITE_API_URL}/api/order/${order.id}/payment`, {
+                                            await fetch(`${API_BASE}/api/order/${order._id || order.id}/payment`, {
                                               method: 'PATCH',
                                               headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
                                               body: JSON.stringify({ paymentMode: m })
                                             });
-                                            setOrders(prev => prev.map(o => o.id === order.id ? { ...o, paymentMode: m } : o));
+                                            setOrders(prev => prev.map(o => ((o._id || o.id) === (order._id || order.id)) ? { ...o, paymentMode: m } : o));
                                           } catch {}
                                         }}
                                         className={`text-xs px-2 py-1 rounded-full border transition font-medium ${isActive ? 'bg-[#FF6B01] text-white border-[#FF6B01]' : 'bg-transparent text-gray-400 border-gray-600 hover:border-gray-400'}`}>
@@ -692,12 +693,12 @@ function App() {
                                       const val = Number(e.target.value) || 0;
                                       const newStatus = val >= (order.total || 0) ? 'Paid' : val > 0 ? 'Partial' : order.paymentStatus;
                                       try {
-                                        await fetch(`${import.meta.env.VITE_API_URL}/api/order/${order.id}/payment`, {
+                                        await fetch(`${API_BASE}/api/order/${order._id || order.id}/payment`, {
                                           method: 'PATCH',
                                           headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
                                           body: JSON.stringify({ amountReceived: val, paymentStatus: newStatus })
                                         });
-                                        setOrders(prev => prev.map(o => o.id === order.id
+                                        setOrders(prev => prev.map(o => (o._id || o.id) === (order._id || order.id)
                                           ? { ...o, amountReceived: val, paymentStatus: newStatus }
                                           : o
                                         ));
@@ -746,12 +747,12 @@ function App() {
                                     <button
                                       onClick={async () => {
                                         try {
-                                          await fetch(`${import.meta.env.VITE_API_URL}/api/order/${order.id}/payment`, {
+                                          await fetch(`${API_BASE}/api/order/${order._id || order.id}/payment`, {
                                             method: 'PATCH',
                                             headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
                                             body: JSON.stringify({ paymentStatus: 'Paid', amountReceived: order.total })
                                           });
-                                          setOrders(prev => prev.map(o => o.id === order.id
+                                          setOrders(prev => prev.map(o => (o._id || o.id) === (order._id || order.id)
                                             ? { ...o, paymentStatus: 'Paid', amountReceived: order.total }
                                             : o
                                           ));
@@ -765,12 +766,12 @@ function App() {
                                     <button
                                       onClick={async () => {
                                         try {
-                                          await fetch(`${import.meta.env.VITE_API_URL}/api/order/${order.id}/payment`, {
+                                          await fetch(`${API_BASE}/api/order/${order._id || order.id}/payment`, {
                                             method: 'PATCH',
                                             headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
                                             body: JSON.stringify({ paymentStatus: 'Unpaid', amountReceived: 0 })
                                           });
-                                          setOrders(prev => prev.map(o => o.id === order.id
+                                          setOrders(prev => prev.map(o => (o._id || o.id) === (order._id || order.id)
                                             ? { ...o, paymentStatus: 'Unpaid', amountReceived: 0 }
                                             : o
                                           ));
@@ -796,12 +797,12 @@ function App() {
                                       <button key={chip}
                                         onClick={async () => {
                                           try {
-                                            await fetch(`${import.meta.env.VITE_API_URL}/api/order/${order.id}/payment`, {
+                                            await fetch(`${API_BASE}/api/order/${order._id || order.id}/payment`, {
                                               method: 'PATCH',
                                               headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
                                               body: JSON.stringify({ paymentNote: chip })
                                             });
-                                            setOrders(prev => prev.map(o => o.id === order.id ? { ...o, paymentNote: chip } : o));
+                                            setOrders(prev => prev.map(o => ((o._id || o.id) === (order._id || order.id)) ? { ...o, paymentNote: chip } : o));
                                           } catch {}
                                         }}
                                         className={`text-xs px-2 py-0.5 rounded-full border transition ${
@@ -822,12 +823,12 @@ function App() {
                                     onBlur={async (e) => {
                                       const note = e.target.value.trim();
                                       try {
-                                        await fetch(`${import.meta.env.VITE_API_URL}/api/order/${order.id}/payment`, {
+                                        await fetch(`${API_BASE}/api/order/${order._id || order.id}/payment`, {
                                           method: 'PATCH',
                                           headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
                                           body: JSON.stringify({ paymentNote: note })
                                         });
-                                        setOrders(prev => prev.map(o => o.id === order.id ? { ...o, paymentNote: note } : o));
+                                        setOrders(prev => prev.map(o => ((o._id || o.id) === (order._id || order.id)) ? { ...o, paymentNote: note } : o));
                                       } catch {}
                                     }}
                                     style={{
@@ -848,12 +849,12 @@ function App() {
                                       <button
                                         onClick={async () => {
                                           try {
-                                            await fetch(`${import.meta.env.VITE_API_URL}/api/order/${order.id}/payment`, {
+                                            await fetch(`${API_BASE}/api/order/${order._id || order.id}/payment`, {
                                               method: 'PATCH',
                                               headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
                                               body: JSON.stringify({ paymentNote: '' })
                                             });
-                                            setOrders(prev => prev.map(o => o.id === order.id ? { ...o, paymentNote: '' } : o));
+                                            setOrders(prev => prev.map(o => ((o._id || o.id) === (order._id || order.id)) ? { ...o, paymentNote: '' } : o));
                                           } catch {}
                                         }}
                                         className="text-xs text-gray-500 hover:text-red-400 transition">
@@ -877,13 +878,13 @@ function App() {
                                 })}
                               </div>
                               {nextStatus
-                                ? <button onClick={() => handleStatusChange(order.id, nextStatus)} disabled={isUpdating}
+                                ? <button onClick={() => handleStatusChange(order._id || order.id, nextStatus)} disabled={isUpdating}
                                     style={{ background: STATUS_STYLE[nextStatus].bg, color: STATUS_STYLE[nextStatus].text }}
                                     className="text-sm font-bold px-4 py-2 rounded-lg hover:opacity-80 disabled:opacity-50">
                                     {isUpdating ? t.updating : `${t.markAs} ${nextStatus} →`}
                                   </button>
                                 : <span className="text-gray-500 text-sm text-center py-2">{t.complete}</span>}
-                              <select value={order.status} onChange={e => handleStatusChange(order.id, e.target.value)} disabled={isUpdating}
+                              <select value={order.status} onChange={e => handleStatusChange(order._id || order.id, e.target.value)} disabled={isUpdating}
                                 className="bg-gray-700 text-gray-300 text-xs rounded-lg px-2 py-1 border border-gray-600 cursor-pointer">
                                 {STATUS_FLOW.map(s => <option key={s} value={s}>{STATUS_STYLE[s].label}</option>)}
                               </select>
@@ -896,7 +897,7 @@ function App() {
                                 </button>
                               )}
                               {order.status !== 'Delivered' && (
-                                <button onClick={() => handleCancelOrder(order.id)} className="bg-red-900 hover:bg-red-700 transition text-red-300 hover:text-white text-xs px-3 py-1.5 rounded-lg font-semibold border border-red-700">
+                                <button onClick={() => handleCancelOrder(order._id || order.id)} className="bg-red-900 hover:bg-red-700 transition text-red-300 hover:text-white text-xs px-3 py-1.5 rounded-lg font-semibold border border-red-700">
                                   ❌ {t.cancelOrder}
                                 </button>
                               )}
@@ -979,7 +980,7 @@ function App() {
                             <td className="py-2 px-4">
                               <div style={{ position: 'relative', width: 52, height: 52 }}>
                                 {item.image
-                                  ? <img src={`${import.meta.env.VITE_API_URL}${item.image}`} alt={item.name} style={{ width: 52, height: 52, borderRadius: 8, objectFit: 'cover', border: '1px solid #374151' }} />
+                                  ? <img src={`${API_BASE}${item.image}`} alt={item.name} style={{ width: 52, height: 52, borderRadius: 8, objectFit: 'cover', border: '1px solid #374151' }} />
                                   : <div style={{ width: 52, height: 52, borderRadius: 8, background: '#1e1e1e', border: '1px dashed #374151', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 20, opacity: 0.4 }}>🍽️</div>}
                                 <div onClick={() => { const inp = document.createElement('input'); inp.type = 'file'; inp.accept = 'image/*'; inp.onchange = e => handleRowImageUpload(item.id, e.target.files[0]); inp.click(); }}
                                   style={{ position: 'absolute', inset: 0, borderRadius: 8, background: 'rgba(0,0,0,0.55)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, cursor: 'pointer', opacity: 0, transition: 'opacity 0.2s' }}

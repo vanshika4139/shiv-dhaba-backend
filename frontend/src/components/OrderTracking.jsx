@@ -1,3 +1,4 @@
+const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:1500';
 import { useState, useEffect, useRef } from "react";
 
 const STATUS_FLOW = ["Pending", "Preparing", "Ready", "Delivered"];
@@ -19,7 +20,7 @@ export default function OrderTracking({ orderId, onClose, onDelivered }) {
 
   const fetchOrder = async () => {
     try {
-      const res  = await fetch(`${import.meta.env.VITE_API_URL}/api/order/${orderId}`);
+      const res  = await fetch(`${API_BASE}/api/order/${orderId}`);
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Order not found");
       setOrder(prev => {

@@ -21,7 +21,7 @@ export default function BillPrint({ order, onClose }) {
     doc.text(`Table: ${order.tableNumber || '—'}`, x, y);
     doc.text(`Time: ${order.time}`, pageW - x - doc.getTextWidth(`Time: ${order.time}`), y); y += 5;
     doc.setFont('helvetica', 'normal');
-    doc.text(`Order #${String(order.id).slice(-6)}`, x, y); y += 4;
+    doc.text(`Order #${String(order._id || order.id).slice(-6)}`, x, y); y += 4;
     line(y); y += 4;
 
     doc.setFont('helvetica', 'bold'); doc.setFontSize(8);
@@ -82,7 +82,7 @@ export default function BillPrint({ order, onClose }) {
             <span>Table: <b style={{ color:'#FF6B01' }}>{order.tableNumber}</b></span>
             <span>Time: {order.time}</span>
           </div>
-          <p style={{ margin:'0 0 10px', fontSize:11, color:'#6b7280' }}>Order #{String(order.id).slice(-6)}</p>
+          <p style={{ margin:'0 0 10px', fontSize:11, color:'#6b7280' }}>Order #{String(order._id || order.id).slice(-6)}</p>
           <div style={{ borderTop:'1px dashed #333', margin:'8px 0' }} />
           <div style={{ display:'flex', fontSize:11, fontWeight:700, color:'#9ca3af', marginBottom:6 }}>
             <span style={{ flex:1 }}>Item</span>

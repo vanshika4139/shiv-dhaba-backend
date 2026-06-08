@@ -1,3 +1,4 @@
+const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:1500';
 import { useState } from "react";
 import { useTheme } from "./ThemeContext";
 
@@ -56,7 +57,7 @@ export default function Cart({ cart, onUpdate, onClose, tableNumber, onTableChan
     if (!validate() || cart.length === 0) return;
     setPlacing(true);
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/order`, {
+      const res = await fetch("${API_BASE}/api/order", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

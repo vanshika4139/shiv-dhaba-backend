@@ -1,3 +1,4 @@
+const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:1500';
 import { useState, useEffect } from 'react';
 
 export default function OrderEditModal({ order, menuItems, onClose, onSave, token }) {
@@ -36,7 +37,7 @@ export default function OrderEditModal({ order, menuItems, onClose, onSave, toke
     if (items.length === 0) { alert('Order mein kam se kam 1 item hona chahiye!'); return; }
     setSaving(true);
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/order/${order.id}/edit`, {
+      const res = await fetch(`${API_BASE}/api/order/${(order._id || order.id)}/edit`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
         body: JSON.stringify({ items, total }),

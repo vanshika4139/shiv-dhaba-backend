@@ -1,3 +1,4 @@
+const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:1500';
 import { useState, useEffect } from 'react';
 
 const STATUS_STYLE = {
@@ -18,7 +19,7 @@ export default function TableHistory({ token }) {
 
   // Fetch table summary on mount
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/api/history/summary`, {
+    fetch('${API_BASE}/api/history/summary', {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(r => r.json())
@@ -31,7 +32,7 @@ export default function TableHistory({ token }) {
     setSelectedTable(table);
     setLoadingH(true);
     try {
-      const r = await fetch(`${import.meta.env.VITE_API_URL}/api/history?table=${table}`, {
+      const r = await fetch(`${API_BASE}/api/history?table=${table}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setHistory(await r.json());

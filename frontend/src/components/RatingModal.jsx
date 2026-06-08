@@ -1,3 +1,4 @@
+const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:1500';
 import { useState } from "react";
 
 function StarRating({ value, onChange, size = 28 }) {
@@ -44,7 +45,7 @@ export default function RatingModal({ order, onClose, onSubmitted }) {
     if (!allRated) return;
     setSubmitting(true);
     try {
-      await fetch(`${import.meta.env.VITE_API_URL}/api/order/${order._id || order.id}/rating`, {
+      await fetch(`${API_BASE}/api/order/${order._id || order.id}/rating`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ overallRating, itemRatings, comment }),
