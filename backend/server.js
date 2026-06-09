@@ -15,6 +15,8 @@ const io     = new Server(server, {
   cors: {
     origin: [
       'https://shiv-dhaba-frontend.onrender.com',
+      'https://peaceful-arithmetic-170028.netlify.app',
+      'https://6a27b20--peaceful-arithmetic-170028.netlify.app',
       'http://localhost:5173',
       'http://localhost:3000'
     ],
@@ -27,6 +29,8 @@ const io     = new Server(server, {
 app.use(cors({
   origin: [
     'https://shiv-dhaba-frontend.onrender.com',
+    'https://peaceful-arithmetic-170028.netlify.app',
+    'https://6a27b20--peaceful-arithmetic-170028.netlify.app',
     'http://localhost:5173',
     'http://localhost:3000'
   ],
