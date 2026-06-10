@@ -17,6 +17,7 @@ const io     = new Server(server, {
       'https://shiv-dhaba-frontend.onrender.com',
       'https://peaceful-arithmetic-170028.netlify.app',
       'https://6a27b20--peaceful-arithmetic-170028.netlify.app',
+      'https://frontend-eosin-mu-15.vercel.app',
       'http://localhost:5173',
       'http://localhost:3000'
     ],
@@ -31,6 +32,7 @@ app.use(cors({
     'https://shiv-dhaba-frontend.onrender.com',
     'https://peaceful-arithmetic-170028.netlify.app',
     'https://6a27b20--peaceful-arithmetic-170028.netlify.app',
+    'https://frontend-eosin-mu-15.vercel.app',
     'http://localhost:5173',
     'http://localhost:3000'
   ],
