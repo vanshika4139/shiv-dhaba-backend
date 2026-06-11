@@ -15,7 +15,7 @@ import RatingModal       from './components/RatingModal';
 import { ThemeProvider, ThemeToggle, useTheme } from './components/ThemeContext';
 
 const STATUS_FLOW  = ['Pending', 'Preparing', 'Ready', 'Delivered'];
-const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:1500';
+import API_BASE from "./api.js";
 const STATUS_STYLE = {
   Pending:   { bg: '#78350f', text: '#fde68a', label: '🕐 Pending' },
   Preparing: { bg: '#1e3a5f', text: '#93c5fd', label: '👨‍🍳 Preparing' },
@@ -149,18 +149,18 @@ function App() {
   }, []);
 
   const handleSocketStatusUpdate = useCallback((id, status) => {
-    setOrders(prev => prev.map(o => o.id === id ? { ...o, status } : o));
-    setMyOrders(prev => prev.map(o => o.id === id ? { ...o, status } : o));
+    setOrders(prev => prev.map(o => ((o._id || o.id) === id) ? { ...o, status } : o));
+    setMyOrders(prev => prev.map(o => ((o._id || o.id) === id) ? { ...o, status } : o));
   }, []);
 
   const handleOrderCancelled = useCallback((id) => {
-    setOrders(prev => prev.filter(o => o.id !== id));
-    setMyOrders(prev => prev.map(o => o.id === id ? { ...o, status: 'Cancelled' } : o));
+    setOrders(prev => prev.filter(o => (o._id || o.id) !== id));
+    setMyOrders(prev => prev.map(o => (( o._id || o.id) === id) ? { ...o, status: 'Cancelled' } : o));
   }, []);
 
   // ── NEW: socket handler for urgent updates from other tabs ──
   const handleSocketUrgent = useCallback((id, urgent) => {
-    setOrders(prev => prev.map(o => o.id === id ? { ...o, urgent } : o));
+    setOrders(prev => prev.map(o => ((o._id || o.id) === id) ? { ...o, urgent } : o));
   }, []);
 
   const { connected } = useSocket(user?.role, handleNewOrder, handleSocketStatusUpdate, handleOrderCancelled, handleSocketUrgent);
@@ -197,7 +197,7 @@ function App() {
     setUpdatingId(orderId);
     try {
       await fetch(`${API_BASE}/api/order/${orderId}/status`, { method: 'PATCH', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }, body: JSON.stringify({ status: newStatus }) });
-      setOrders(prev => prev.map(o => o.id === orderId ? { ...o, status: newStatus } : o));
+      setOrders(prev => prev.map(o => ((o._id || o.id) === orderId) ? { ...o, status: newStatus } : o));
     } catch { alert(t.statusFailed); }
     setUpdatingId(null);
   };
@@ -205,7 +205,7 @@ function App() {
 
   /* ── NEW: Urgent toggle handler ── */
   const handleUrgentToggle = useCallback((orderId, newUrgent) => {
-    setOrders(prev => prev.map(o => o.id === orderId ? { ...o, urgent: newUrgent } : o));
+    setOrders(prev => prev.map(o => ((o._id || o.id) === orderId) ? { ...o, urgent: newUrgent } : o));
   }, []);
 
   /* ── Admin: Cancel Order ── */
@@ -213,7 +213,7 @@ function App() {
     if (!window.confirm(t.cancelConfirm)) return;
     try {
       const res = await fetch(`${API_BASE}/api/order/${orderId}`, { method: 'DELETE', headers: { 'Authorization': `Bearer ${token}` } });
-      if (res.ok) setOrders(prev => prev.filter(o => o.id !== orderId));
+      if (res.ok) setOrders(prev => prev.filter(o => (o._id || o.id) !== orderId));
       else alert(t.cancelFailed);
     } catch { alert(t.cancelFailed); }
   };
@@ -251,7 +251,7 @@ function App() {
     try {
       const res = await fetch(`${API_BASE}/api/order/${orderId}`, { method: 'DELETE' });
       if (res.ok) {
-        setMyOrders(prev => prev.map(o => o.id === orderId ? { ...o, status: 'Cancelled' } : o));
+        setMyOrders(prev => prev.map(o => ((o._id || o.id) === orderId) ? { ...o, status: 'Cancelled' } : o));
       } else { alert(t.cancelFailed); }
     } catch { alert(t.cancelFailed); }
   };

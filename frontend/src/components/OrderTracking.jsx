@@ -1,4 +1,4 @@
-const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:1500';
+import API_BASE from '../api.js';
 import { useState, useEffect, useRef } from "react";
 
 const STATUS_FLOW = ["Pending", "Preparing", "Ready", "Delivered"];

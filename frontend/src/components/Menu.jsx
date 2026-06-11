@@ -1,4 +1,4 @@
-const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:1500';
+import API_BASE from '../api.js';
 import { useState, useEffect } from "react";
 import { useTheme, ThemeToggle } from "./ThemeContext";
 
@@ -22,7 +22,7 @@ export default function Menu({ onAddToCart }) {
   const [addedId, setAddedId] = useState(null);
 
   useEffect(() => {
-    fetch("${API_BASE}/api/menu")
+    fetch(`${API_BASE}/api/menu`)
       .then(r => r.json())
       .then(data => { setMenuItems(data); setLoading(false); })
       .catch(() => setLoading(false));
@@ -184,7 +184,7 @@ function ItemGrid({ items, onAdd, addedId, theme }) {
           >
             {item.image ? (
               <img
-                src={`http://localhost:1500${item.image}`} alt={item.name}
+                src={`${API_BASE}${item.image}`} alt={item.name}
                 style={{ width: "100%", height: 130, objectFit: "cover" }}
               />
             ) : (
