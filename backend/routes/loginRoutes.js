@@ -4,7 +4,7 @@ const bcrypt  = require('bcryptjs');
 const jwt     = require('jsonwebtoken');
 const fs      = require('fs');
 const path    = require('path');
-const nodemailer = require('nodemailer');
+const https   = require('https');
 
 const usersFile  = path.join(__dirname, '../users.json');
 const JWT_SECRET = process.env.JWT_SECRET || 'shivdhaba_super_secret_key_2024';
@@ -41,16 +41,51 @@ const writeUsers = (data) => {
 // OTP store (in-memory)
 const otpStore = {};
 
-// Nodemailer transporter — Brevo SMTP
-const transporter = nodemailer.createTransport({
-  host: process.env.EMAIL_HOST || 'smtp-relay.brevo.com',
-  port: Number(process.env.EMAIL_PORT) || 587,
-  secure: false,
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS
-  }
-});
+// Brevo HTTP API se email bhejo (SMTP nahi — Render pe kaam karta hai)
+function sendBrevoEmail(toEmail, toName, otp) {
+  return new Promise((resolve, reject) => {
+    const body = JSON.stringify({
+      sender: { name: "Restro", email: "vanshika3926@gmail.com" },
+      to: [{ email: toEmail, name: toName || toEmail }],
+      subject: "Restro — Password Reset OTP",
+      htmlContent: `
+        <div style="font-family: Arial; padding: 20px; background: #fff8f0; border-radius: 10px;">
+          <h2 style="color: #e65c00;">🍽️ Restro</h2>
+          <p>Aapka OTP code hai:</p>
+          <h1 style="color: #e65c00; letter-spacing: 5px;">${otp}</h1>
+          <p>Ye OTP 10 minute mein expire ho jayega.</p>
+        </div>
+      `
+    });
+
+    const options = {
+      hostname: 'api.brevo.com',
+      path: '/v3/smtp/email',
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'api-key': process.env.BREVO_API_KEY,
+        'Content-Length': Buffer.byteLength(body)
+      }
+    };
+
+    const req = https.request(options, (res) => {
+      let data = '';
+      res.on('data', chunk => data += chunk);
+      res.on('end', () => {
+        if (res.statusCode >= 200 && res.statusCode < 300) {
+          resolve(data);
+        } else {
+          reject(new Error(`Brevo API error: ${res.statusCode} — ${data}`));
+        }
+      });
+    });
+
+    req.on('error', reject);
+    req.write(body);
+    req.end();
+  });
+}
 
 // POST /api/auth/login
 router.post('/login', async (req, res) => {
@@ -124,24 +159,12 @@ router.post('/forgot-password', async (req, res) => {
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
     otpStore[email.toLowerCase()] = { otp, expires: Date.now() + 10 * 60 * 1000 };
 
-    await transporter.sendMail({
-      from: `"Restro" <${process.env.EMAIL_USER}>`,
-      to: email,
-      subject: 'Restro — Password Reset OTP',
-      html: `
-        <div style="font-family: Arial; padding: 20px; background: #fff8f0; border-radius: 10px;">
-          <h2 style="color: #e65c00;">🍽️ Restro</h2>
-          <p>Aapka OTP code hai:</p>
-          <h1 style="color: #e65c00; letter-spacing: 5px;">${otp}</h1>
-          <p>Ye OTP 10 minute mein expire ho jayega.</p>
-        </div>
-      `
-    });
+    await sendBrevoEmail(email, user.name, otp);
 
     res.json({ message: 'OTP bhej diya gaya!' });
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: 'OTP bhejne mein problem aayi' });
+    console.error('Forgot password error:', err);
+    res.status(500).json({ error: 'OTP bhejne mein problem aayi: ' + err.message });
   }
 });
 
