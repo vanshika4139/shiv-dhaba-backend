@@ -9,8 +9,34 @@ const nodemailer = require('nodemailer');
 const usersFile  = path.join(__dirname, '../users.json');
 const JWT_SECRET = process.env.JWT_SECRET || 'shivdhaba_super_secret_key_2024';
 
-const readUsers  = () => JSON.parse(fs.readFileSync(usersFile, 'utf-8'));
-const writeUsers = (data) => fs.writeFileSync(usersFile, JSON.stringify(data, null, 2));
+// Default admin user (fallback agar users.json empty ya missing ho)
+function getDefaultUsers() {
+  return [{
+    id: 1,
+    name: "Vanshika",
+    email: "vanshika3926@gmail.com",
+    password: "$2b$10$zDGyJMsnU2yamGy7Ll3iH.LRDSHQx4gwTlu9aX2XPXTBVlW8DSgdG",
+    role: "admin"
+  }];
+}
+
+const readUsers = () => {
+  try {
+    const data = JSON.parse(fs.readFileSync(usersFile, 'utf-8'));
+    if (!Array.isArray(data) || data.length === 0) return getDefaultUsers();
+    return data;
+  } catch {
+    return getDefaultUsers();
+  }
+};
+
+const writeUsers = (data) => {
+  try {
+    fs.writeFileSync(usersFile, JSON.stringify(data, null, 2));
+  } catch (err) {
+    console.error('users.json write failed (Render pe normal hai):', err.message);
+  }
+};
 
 // OTP store (in-memory)
 const otpStore = {};
@@ -99,12 +125,12 @@ router.post('/forgot-password', async (req, res) => {
     otpStore[email.toLowerCase()] = { otp, expires: Date.now() + 10 * 60 * 1000 };
 
     await transporter.sendMail({
-      from: `"Shiv Dhaba" <${process.env.EMAIL_USER}>`,
+      from: `"Restro" <${process.env.EMAIL_USER}>`,
       to: email,
-      subject: 'Shiv Dhaba — Password Reset OTP',
+      subject: 'Restro — Password Reset OTP',
       html: `
         <div style="font-family: Arial; padding: 20px; background: #fff8f0; border-radius: 10px;">
-          <h2 style="color: #e65c00;">🍽️ Shiv Dhaba</h2>
+          <h2 style="color: #e65c00;">🍽️ Restro</h2>
           <p>Aapka OTP code hai:</p>
           <h1 style="color: #e65c00; letter-spacing: 5px;">${otp}</h1>
           <p>Ye OTP 10 minute mein expire ho jayega.</p>
