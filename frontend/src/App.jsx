@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import Login             from './components/login';
 import Menu              from './components/Menu';
-import Cart              from './components/cart';
+import Cart              from './components/Cart';
 import Dashboard         from './components/dashboard';
 import NotificationToast from './components/OrderToast';
 import BillModal         from './components/BillPrint';
