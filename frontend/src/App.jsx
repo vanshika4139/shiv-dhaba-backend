@@ -514,7 +514,7 @@ function App() {
 
           <nav className="px-6 py-4 flex justify-between items-center border-b border-gray-800 sticky top-0 z-50" style={{ background: theme.bg, borderColor: theme.border }}>
             <div>
-              <h1 className="text-xl font-bold text-[#FF6B01] m-0">🍽️ SHIV DHABA</h1>
+              <h1 className="text-xl font-bold text-[#FF6B01] m-0">🍽️ RESTRO</h1>
               <div className="flex items-center gap-2 mt-0.5">
                 <div style={{ width: 7, height: 7, borderRadius: '50%', background: connected ? '#22c55e' : '#ef4444' }} />
                 <p className="text-xs m-0" style={{ color: connected ? '#22c55e' : '#ef4444' }}>

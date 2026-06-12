@@ -8,7 +8,7 @@ function Navbar({ cartCount, onCartClick }) {
         
         {/* Logo / Name */}
         <div className="text-2xl font-black tracking-wider text-[#FF6B01] font-serif cursor-pointer">
-          SHIV DHABA <span className="text-[#FFD700]">RESTRO</span>
+          RESTRO
         </div>
 
         {/* Desktop Menu Links */}

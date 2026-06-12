@@ -2,7 +2,7 @@ import React from 'react';
 
 const REVIEWS = [
   { id: 1, name: "Rahul Sharma", rating: "⭐⭐⭐⭐⭐", text: "Dal Makhani ka swad ekdum lajawab hai! Asli desi ghee ka maza aa gaya." },
-  { id: 2, name: "Priya Verma", rating: "⭐⭐⭐⭐⭐", text: "Shiv Dhaba Thali is pocket-friendly and completely filling. Highly recommended!" }
+  { id: 2, name: "Priya Verma", rating: "⭐⭐⭐⭐⭐", text: "Restro Thali is pocket-friendly and completely filling. Highly recommended!" }
 ];
 
 function OffersAndReviews() {
@@ -17,7 +17,7 @@ function OffersAndReviews() {
           Get 20% OFF on orders above ₹300!
         </h3>
         <p className="text-white/80 text-sm mt-1 italic">
-          Use Code: <span className="font-mono font-bold text-yellow-300 bg-black/30 px-2 py-0.5 rounded">SHIV20</span> on billing counter.
+          Use Code: <span className="font-mono font-bold text-yellow-300 bg-black/30 px-2 py-0.5 rounded">RESTRO20</span> on billing counter.
         </p>
       </div>
 

@@ -161,7 +161,7 @@ export default function Login({ onLogin }) {
         <div style={bannerStyle}>
           <div style={{ fontSize: 44, marginBottom: 8 }}>🍽️</div>
           <h1 style={{ margin: 0, fontSize: 24, fontWeight: 900, color: theme.accent, letterSpacing: -0.5 }}>
-            SHIV DHABA
+            RESTRO
           </h1>
           <p style={{ margin: '6px 0 0', fontSize: 13, color: theme.textSubtitle }}>
             {step === 'login'  && '& Restro — Admin Login'}

@@ -10,10 +10,10 @@ export default function BillPrint({ order, onClose }) {
     const line   = (yPos) => { doc.setDrawColor(180); doc.line(x, yPos, pageW - x, yPos); };
 
     doc.setFont('helvetica', 'bold'); doc.setFontSize(14);
-    center('SHIV DHABA & RESTRO', y); y += 6;
+    center('RESTRO', y); y += 6;
     doc.setFont('helvetica', 'normal'); doc.setFontSize(7);
-    center('Near Sai Mandir, Behat Road, Devla, SRE', y); y += 4;
-    center('Ph: +91-8077382218', y); y += 4;
+    center('XYZ', y); y += 4;
+    center('', y); y += 4;
     center('Indian | Chinese | Tandoori', y); y += 5;
     line(y); y += 4;
 
@@ -73,9 +73,9 @@ export default function BillPrint({ order, onClose }) {
 
         <div style={{ padding:'20px', fontFamily:"'Courier New', monospace", maxHeight:'60vh', overflowY:'auto' }}>
           <div style={{ textAlign:'center', marginBottom:16 }}>
-            <p style={{ margin:0, fontSize:16, fontWeight:800, color:'#FF6B01', letterSpacing:1 }}>SHIV DHABA & RESTRO</p>
-            <p style={{ margin:'3px 0', fontSize:10, color:'#6b7280' }}>Near Sai Mandir, Behat Road, Devla, SRE</p>
-            <p style={{ margin:'2px 0', fontSize:10, color:'#6b7280' }}>Ph: +91-8077382218</p>
+            <p style={{ margin:0, fontSize:16, fontWeight:800, color:'#FF6B01', letterSpacing:1 }}>RESTRO</p>
+            <p style={{ margin:'3px 0', fontSize:10, color:'#6b7280' }}>XYZ</p>
+            <p style={{ margin:'2px 0', fontSize:10, color:'#6b7280' }}></p>
           </div>
           <div style={{ borderTop:'1px dashed #333', margin:'10px 0' }} />
           <div style={{ display:'flex', justifyContent:'space-between', fontSize:12, color:'#9ca3af', marginBottom:4 }}>

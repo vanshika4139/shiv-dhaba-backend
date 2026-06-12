@@ -98,7 +98,7 @@ function CartModal({ isOpen, onClose, cartCount }) {
               <span style={{ fontSize: 24, fontWeight: 900, color: theme.accentGold }}>₹{totalBill}</span>
             </div>
             <button
-              onClick={() => alert('Order Received! Shiv Dhaba mein aapka khana banna shuru ho gaya hai. 🎉')}
+              onClick={() => alert('Order Received! Restro mein aapka khana banna shuru ho gaya hai. 🎉')}
               style={{
                 width: '100%',
                 background: 'linear-gradient(to right, #FF6B01, #FFD700)',

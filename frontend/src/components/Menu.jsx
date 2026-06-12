@@ -68,7 +68,7 @@ export default function Menu({ onAddToCart }) {
           <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: 4 }}>
             <div>
               <h1 style={{ margin: "0 0 4px", fontSize: 28, fontWeight: 800, color: theme.accent, letterSpacing: "-0.5px" }}>
-                🍽️ SHIV DHABA
+                🍽️ RESTRO
               </h1>
               <p style={{ margin: "0 0 16px", color: theme.textSubtitle, fontSize: 13 }}>
                 Indian • Chinese • Tandoori
