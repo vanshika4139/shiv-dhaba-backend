@@ -15,7 +15,7 @@ function getDefaultUsers() {
     id: 1,
     name: "Vanshika",
     email: "vanshika3926@gmail.com",
-    password: "$2b$10$zDGyJMsnU2yamGy7Ll3iH.LRDSHQx4gwTlu9aX2XPXTBVlW8DSgdG",
+    password: "$2b$10$tUuYlAVuCbCe.Q2VxlcwtexnFzdFp/RNEU0G6Pxq5vMWcjRqJIiRG",
     role: "admin"
   }];
 }
